@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+
+@keyframes slideUpFadeIn {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.font-motion {
+  animation: slideUpFadeIn 1s ease-in-out forwards;
+}
+
+/* index.css */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+
+}
+
+body {
+  min-height: 100vh;
+  scrollbar-width: none;
+}
