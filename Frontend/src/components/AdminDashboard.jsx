@@ -15,7 +15,7 @@ import EliteStoreText from '../assets/EliteStoreText.png'
 import DarkEliteStore from '../assets/darklogo.png'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
-
+console.log(API_URL)
 const AdminDashboard = () => {
   const navigate = useNavigate()
   const [stats, setStats] = useState({

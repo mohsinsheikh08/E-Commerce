@@ -24,7 +24,6 @@ const LandingPage = () => {
 
     return () => clearInterval(interval)
   }, [])
-  console.log(CurrentImage)
   return (
    <Motion>
      <div className="w-full bg-gray-50 overflow-hidden ">
