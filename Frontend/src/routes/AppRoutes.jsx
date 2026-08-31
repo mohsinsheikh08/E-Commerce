@@ -9,9 +9,10 @@ import Home from '../components/Home.jsx'
 import CreateProduct from '../pages/CreateProduct.jsx'
 import ProductPage from '../components/ProductPage.jsx'
 import CartPage from '../components/CartPage.jsx'
-import OrderHistory from '../components/OrderSuccess.jsx'
+import OrderSuccess from '../components/OrderSuccess.jsx'
 import OrderInfo from '../pages/OrderInfo.jsx'
 import AdminDashboard from '../components/AdminDashboard.jsx'
+
 const AppRoutes = () => {
   return (
     <div>
@@ -26,7 +27,7 @@ const AppRoutes = () => {
           <Route path='/EliteStore' element={<Home />} />
           <Route path='/product-page/:id' element={<ProductPage />} />
           <Route path='/cart-page' element={<CartPage />}/>
-          <Route path='/order-history' element={<OrderHistory />}/>
+          <Route path='/order-history' element={<OrderSuccess/>}/>
           <Route path='/order-info' element={<OrderInfo />} />
           <Route path='/admin-board' element={<AdminDashboard />} />
         </Routes>

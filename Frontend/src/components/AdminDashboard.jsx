@@ -14,8 +14,6 @@ import {
 import EliteStoreText from '../assets/EliteStoreText.png'
 import DarkEliteStore from '../assets/darklogo.png'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
-console.log(API_URL)
 const AdminDashboard = () => {
   const navigate = useNavigate()
   const [stats, setStats] = useState({
@@ -31,13 +29,13 @@ const AdminDashboard = () => {
   useEffect(() => {
     const getStats = async () => {
       try {
-        const response = await axios.get(`${API_URL}/auth/admin-stats`, {
+        const response = await axios.get('http://localhost:4000/api/auth/admin-stats', {
           withCredentials: true
         })
         setStats(response.data.stats)
         console.log('Stats:', response.data.stats)
 
-        const adminResponse = await axios.get(`${API_URL}/auth/admin-info`, {
+        const adminResponse = await axios.get('http://localhost:4000/api/auth/admin-info', {
           withCredentials: true
         })
         setAdminInfo(adminResponse.data.admin)
@@ -58,7 +56,7 @@ const AdminDashboard = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get(`${API_URL}/auth/admin-logout`, {
+      await axios.get('http://localhost:4000/api/auth/admin-logout', {
         withCredentials: true
       })
       navigate('/admin-login')

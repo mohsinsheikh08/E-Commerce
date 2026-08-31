@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom'
 import EliteStoreText from '../assets/EliteStoreText.png'
 import { cartContext } from '../context/Context'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
-
 const Home = () => {
   const { setCartInfo, cartInfo } = useContext(cartContext)
   const [isOpen, setIsOpen] = useState(false)
@@ -23,18 +21,18 @@ const Home = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get(`${API_URL}/product/all-products`, {
+        const response = await axios.get('http://localhost:4000/api/product/all-products', {
           withCredentials: true
         })
         setProducts(response.data?.products)
 
-        const secResponse = await axios.get(`${API_URL}/auth/admin-info`, {
+        const secResponse = await axios.get('http://localhost:4000/api/auth/admin-info', {
           withCredentials: true
         })
         setAdminInfo(secResponse.data?.admin)
 
         try {
-          const cartResponse = await axios.get(`${API_URL}/cart/cart`, {
+          const cartResponse = await axios.get('http://localhost:4000/api/cart/cart', {
             withCredentials: true
           })
           setCartInfo(cartResponse.data?.cart || null)
@@ -57,7 +55,7 @@ const Home = () => {
 
   const cartData = async (productId) => {
     try {
-      const thirdResponse = await axios.post(`${API_URL}/cart/item/${productId}`, {
+      const thirdResponse = await axios.post(`http://localhost:4000/api/cart/item/${productId}`, {
         quantity: 1,
       }, {
         withCredentials: true

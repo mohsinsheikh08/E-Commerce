@@ -6,8 +6,6 @@ import DarkEliteStore from '../assets/darklogo.png'
 import { cartContext } from '../context/Context'
 import Iphone from '../images/Iphone.jpg'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
-
 const CartPage = () => {
   const { cartInfo, setCartInfo } = useContext(cartContext)
   const [loading, setLoading] = useState(true)
@@ -15,7 +13,7 @@ const CartPage = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const cartResponse = await axios.get(`${API_URL}/cart/cart`, {
+        const cartResponse = await axios.get('http://localhost:4000/api/cart/cart', {
           withCredentials: true
         })
         setCartInfo(cartResponse.data?.cart || null)
@@ -37,7 +35,7 @@ const CartPage = () => {
     }
 
     try {
-      const response = await axios.delete(`${API_URL}/cart/${productId}`, {
+      const response = await axios.delete(`http://localhost:4000/api/cart/${productId}`, {
         withCredentials: true
       })
       setCartInfo(response?.data?.cart || null)

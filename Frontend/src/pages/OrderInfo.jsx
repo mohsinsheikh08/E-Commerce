@@ -5,8 +5,6 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
-
 const OrderInfo = () => {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
@@ -23,7 +21,7 @@ const OrderInfo = () => {
     e.preventDefault();
     try {
       setIsLoading(true)
-      await axios.post(`${API_URL}/order/add-order`, {
+      await axios.post('http://localhost:4000/api/order/add-order', {
         'paymentMethod': paymentMethod,
         'address': {
           'street': street,

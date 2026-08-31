@@ -5,8 +5,6 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
-
 const CreateProduct = () => {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
@@ -41,7 +39,7 @@ const CreateProduct = () => {
         formData.append('discount', discount);
         try {
             setIsLoading(true)
-            await axios.post(`${API_URL}/product/create-product`, formData, {
+            await axios.post('http://localhost:4000/api/product/create-product', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
                 withCredentials: true
             })

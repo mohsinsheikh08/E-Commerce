@@ -5,8 +5,6 @@ import { Star, Minus, Plus, Truck, Shield, RotateCcw, MoveLeft } from 'lucide-re
 import DarkEliteStore from '../assets/darklogo.png'
 import EliteStoreText from '../assets/EliteStoreText.png'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
-
 const ProductPage = () => {
     const { id } = useParams();
     const [product, setproduct] = useState({})
@@ -17,7 +15,7 @@ const ProductPage = () => {
         const getData = async () => {
             try {
                 setLoading(true)
-                const response = await axios.get(`${API_URL}/product/${id}`)
+                const response = await axios.get(`http://localhost:4000/api/product/${id}`)
                 console.log(response.data.product)
                 setproduct(response.data.product)
             } catch (err) {

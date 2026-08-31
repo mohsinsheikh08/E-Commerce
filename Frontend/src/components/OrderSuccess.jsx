@@ -5,8 +5,6 @@ import axios from 'axios'
 import EliteStoreText from '../assets/EliteStoreText.png'
 import DarkEliteStore from '../assets/darklogo.png'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
-
 const OrderSuccess = () => {
   const location = useLocation()
   const [order, setOrder] = useState(location.state?.order || null)
@@ -17,7 +15,7 @@ const OrderSuccess = () => {
       const fetchLastOrder = async () => {
         try {
           setLoading(true)
-          const response = await axios.get(`${API_URL}/order/my-orders`, {
+          const response = await axios.get('http://localhost:4000/api/order/my-orders', {
             withCredentials: true
           })
           const orders = response.data.order || []

@@ -6,8 +6,6 @@ import { Eye, EyeClosed } from 'lucide-react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
-
 const AdminLogin = () => {
    const navigate = useNavigate()
   const [isPassword, setIsPassword] = useState(true)
@@ -23,7 +21,7 @@ const AdminLogin = () => {
     setRegistered('')
     try {
       setIsLoading(true)
-      await axios.post(`${API_URL}/auth/admin-login`, {
+      await axios.post('http://localhost:4000/api/auth/admin-login', {
         email: email,
         password: password
       }, {
