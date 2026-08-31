@@ -5,6 +5,9 @@ import { useState } from 'react'
 import { Eye, EyeClosed } from 'lucide-react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
+
 const UserLogin = () => {
   const navigate = useNavigate()
   const [isPassword, setIsPassword] = useState(true)
@@ -13,6 +16,7 @@ const UserLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [Registered, setRegistered] = useState('')
+
   const submitHandler = async (e) => {
     e.preventDefault();
     setEmail('')
@@ -21,7 +25,7 @@ const UserLogin = () => {
     setRegistered('')
     try {
       setIsLoading(true)
-      await axios.post('http://localhost:4000/api/auth/login', {
+      await axios.post(`${API_URL}/auth/login`, {
         email: email,
         password: password
       }, {
@@ -38,18 +42,19 @@ const UserLogin = () => {
       setIsLoading(false)
     }
   }
+
   return (
     <Motion>
       <div className="w-full h-screen">
         <div className='w-full h-15 flex '>
-          <div className=' w-40 ml-5 flex justify-center  items-center '>
+          <div className=' w-40 ml-5 flex justify-center items-center '>
             <img className='w-full h-10 object-contain' src={DarkEliteStore} alt="Logo" />
             <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
           </div>
         </div>
-        <div className=' md:py-5   items-center flex justify-center flex-col '>
-          <div className='  rounded-2xl border-gray-500/90 border-2 '>
-            <div className='pt-3  flex flex-col items-center justify-center'>
+        <div className=' md:py-5 items-center flex justify-center flex-col '>
+          <div className=' rounded-2xl border-gray-500/90 border-2 '>
+            <div className='pt-3 flex flex-col items-center justify-center'>
               <h1 className='text-4xl font-semibold'>Log<span className='text-[#FF6200]'>in</span></h1>
 
               {Error && (
@@ -61,7 +66,6 @@ const UserLogin = () => {
               <div className='text-xs text-[#131921] pt-5'>Login your account <Link to='/admin-login' className='text-[#FF6200] font-semibold'>Seller Account</Link></div>
             </div>
             <form className='mx-4' onSubmit={(e) => { submitHandler(e) }}>
-             
               <label>
                 <div>
                   <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Email</p>
@@ -71,7 +75,7 @@ const UserLogin = () => {
                   <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Password</p>
                   <div className='flex justify-center items-center'>
                     <input value={password} onChange={(e) => { setPassword(e.target.value) }} className='border-2 border-r-0 rounded-tr-none rounded-br-none rounded-xl border-gray-500 pl-3 py-1 w-full ' type={!isPassword ? 'text' : 'password'} placeholder='Write your password!' />
-                    <button type='button' onClick={() => { isPassword === true ? setIsPassword(false) : setIsPassword(true) }} className='border-2 py-1  cursor-pointer rounded-xl rounded-tl-none rounded-bl-none px-1 border-l-0 '>{!isPassword ? <Eye /> : <EyeClosed />}</button>
+                    <button type='button' onClick={() => { isPassword === true ? setIsPassword(false) : setIsPassword(true) }} className='border-2 py-1 cursor-pointer rounded-xl rounded-tl-none rounded-bl-none px-1 border-l-0 '>{!isPassword ? <Eye /> : <EyeClosed />}</button>
                   </div>
                 </div>
               </label>
@@ -83,9 +87,7 @@ const UserLogin = () => {
               <div className='text-xs text-[#131921] py-5'>If you do not have account {' '} <Link to='/user-signin' className='text-[#FF6200] font-semibold'>Sign up</Link></div>
             </div>
           </div>
-
         </div>
-
       </div>
     </Motion>
   )

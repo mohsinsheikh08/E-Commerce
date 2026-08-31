@@ -6,6 +6,8 @@ import DarkEliteStore from '../assets/darklogo.png'
 import { cartContext } from '../context/Context'
 import Iphone from '../images/Iphone.jpg'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
+
 const CartPage = () => {
   const { cartInfo, setCartInfo } = useContext(cartContext)
   const [loading, setLoading] = useState(true)
@@ -13,7 +15,7 @@ const CartPage = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const cartResponse = await axios.get('http://localhost:4000/api/cart/cart', {
+        const cartResponse = await axios.get(`${API_URL}/cart/cart`, {
           withCredentials: true
         })
         setCartInfo(cartResponse.data?.cart || null)
@@ -27,23 +29,24 @@ const CartPage = () => {
       }
     }
     getData()
-
   }, [setCartInfo])
+
   const deleteData = async (productId) => {
     if (!confirm("Are you sure you want to remove this item from cart?")) {
       return;
     }
 
     try {
-      const response = await axios.delete(`http://localhost:4000/api/cart/${productId}`, {
+      const response = await axios.delete(`${API_URL}/cart/${productId}`, {
         withCredentials: true
       })
       setCartInfo(response?.data?.cart || null)
       console.log("Delete Cart", response?.data?.cart)
     } catch (err) {
-      console.log(err.response.data)
+      console.log(err.response?.data)
     }
   }
+
   if (loading) {
     return (
       <div className='bg-gray-50'>
@@ -143,7 +146,7 @@ const CartPage = () => {
                     <p className='text-sm font-bold text-[#FF6200]'>
                       Subtotal: Rs. {((item?.price || 0) * (item?.quantity || 1)).toLocaleString()}
                     </p>
-                    <button onClick={() => {deleteData(productId)}} className='font-bold border-[#FF6200] text-[#FF6200] border-2 w-20 flex rounded-lg justify-center py-1 hover:bg-red-50 transition'>
+                    <button onClick={() => { deleteData(productId) }} className='font-bold border-[#FF6200] text-[#FF6200] border-2 w-20 flex rounded-lg justify-center py-1 hover:bg-red-50 transition'>
                       Delete
                     </button>
                   </div>
@@ -168,7 +171,7 @@ const CartPage = () => {
           </div>
 
           <Link to='/order-info'>
-            <button  className='w-full mt-5 bg-[#FF6200] text-white py-3 rounded-xl font-bold hover:bg-[#e05500] transition active:scale-[0.98]'>
+            <button className='w-full mt-5 bg-[#FF6200] text-white py-3 rounded-xl font-bold hover:bg-[#e05500] transition active:scale-[0.98]'>
               Proceed to Checkout
             </button>
           </Link>

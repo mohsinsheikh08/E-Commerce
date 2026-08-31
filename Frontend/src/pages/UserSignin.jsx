@@ -5,6 +5,9 @@ import { useState } from 'react'
 import { Eye, EyeClosed } from 'lucide-react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
+
 const UserSignin = () => {
   const navigate = useNavigate()
   const [isPassword, setIsPassword] = useState(true)
@@ -15,6 +18,7 @@ const UserSignin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [Registered, setRegistered] = useState('')
+
   const submitHandler = async (e) => {
     e.preventDefault();
     setFirstName('')
@@ -23,7 +27,7 @@ const UserSignin = () => {
     setPassword('')
     try {
       setIsLoading(true)
-      await axios.post('http://localhost:4000/api/auth/register', {
+      await axios.post(`${API_URL}/auth/register`, {
         fullName: {
           firstName: firstName,
           lastName: lastName
@@ -44,18 +48,19 @@ const UserSignin = () => {
       setIsLoading(false)
     }
   }
+
   return (
     <Motion>
       <div className="w-full h-screen">
         <div className='w-full h-15 flex '>
-          <div className=' w-40 ml-5 flex justify-center  items-center '>
+          <div className=' w-40 ml-5 flex justify-center items-center '>
             <img className='w-full h-10 object-contain' src={DarkEliteStore} alt="Logo" />
             <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
           </div>
         </div>
-        <div className=' md:py-5   items-center flex justify-center flex-col '>
-          <div className='  rounded-2xl border-gray-500/90 border-2 '>
-            <div className='pt-3  flex flex-col items-center justify-center'>
+        <div className=' md:py-5 items-center flex justify-center flex-col '>
+          <div className=' rounded-2xl border-gray-500/90 border-2 '>
+            <div className='pt-3 flex flex-col items-center justify-center'>
               <h1 className='text-4xl font-semibold'>Sign <span className='text-[#FF6200]'>Up</span></h1>
 
               {Error && (
@@ -86,7 +91,7 @@ const UserSignin = () => {
                   <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Password</p>
                   <div className='flex justify-center items-center'>
                     <input value={password} onChange={(e) => { setPassword(e.target.value) }} className='border-2 border-r-0 rounded-tr-none rounded-br-none rounded-xl border-gray-500 pl-3 py-1 w-full ' type={!isPassword ? 'text' : 'password'} placeholder='Write your password!' />
-                    <button type='button' onClick={() => { isPassword === true ? setIsPassword(false) : setIsPassword(true) }} className='border-2 py-1  cursor-pointer rounded-xl rounded-tl-none rounded-bl-none px-1 border-l-0 '>{!isPassword ? <Eye /> : <EyeClosed />}</button>
+                    <button type='button' onClick={() => { isPassword === true ? setIsPassword(false) : setIsPassword(true) }} className='border-2 py-1 cursor-pointer rounded-xl rounded-tl-none rounded-bl-none px-1 border-l-0 '>{!isPassword ? <Eye /> : <EyeClosed />}</button>
                   </div>
                 </div>
               </label>
@@ -98,9 +103,7 @@ const UserSignin = () => {
               <div className='text-xs text-[#131921] py-5'>Already have an account? {' '} <Link to='/user-login' className='text-[#FF6200] font-semibold'>Login</Link></div>
             </div>
           </div>
-
         </div>
-
       </div>
     </Motion>
   )

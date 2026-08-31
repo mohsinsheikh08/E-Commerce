@@ -14,6 +14,8 @@ import {
 import EliteStoreText from '../assets/EliteStoreText.png'
 import DarkEliteStore from '../assets/darklogo.png'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
+
 const AdminDashboard = () => {
   const navigate = useNavigate()
   const [stats, setStats] = useState({
@@ -25,16 +27,17 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [adminInfo, setAdminInfo] = useState(null)
+
   useEffect(() => {
     const getStats = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/auth/admin-stats', {
+        const response = await axios.get(`${API_URL}/auth/admin-stats`, {
           withCredentials: true
         })
         setStats(response.data.stats)
         console.log('Stats:', response.data.stats)
 
-        const adminResponse = await axios.get('http://localhost:4000/api/auth/admin-info', {
+        const adminResponse = await axios.get(`${API_URL}/auth/admin-info`, {
           withCredentials: true
         })
         setAdminInfo(adminResponse.data.admin)
@@ -55,7 +58,7 @@ const AdminDashboard = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:4000/api/auth/admin-logout', {
+      await axios.get(`${API_URL}/auth/admin-logout`, {
         withCredentials: true
       })
       navigate('/admin-login')
@@ -116,7 +119,7 @@ const AdminDashboard = () => {
     },
     {
       title: 'Revenue',
-      value: `Rs. ${stats.totalRevenue.toLocaleString()}`,
+      value: `Rs. ${stats.totalRevenue?.toLocaleString() || 0}`,
       icon: DollarSign,
       bgColor: 'bg-orange-50',
       textColor: 'text-orange-600'

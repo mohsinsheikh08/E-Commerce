@@ -4,6 +4,9 @@ import Motion from '../Features/Motion'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
+
 const CreateProduct = () => {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
@@ -20,6 +23,7 @@ const CreateProduct = () => {
     const [size, setSize] = useState('')
     const [category, setCategory] = useState('')
     const [color, setColor] = useState('')
+
     const submitHandler = async (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -37,7 +41,7 @@ const CreateProduct = () => {
         formData.append('discount', discount);
         try {
             setIsLoading(true)
-            await axios.post('http://localhost:4000/api/product/create-product', formData, {
+            await axios.post(`${API_URL}/product/create-product`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
                 withCredentials: true
             })
@@ -47,30 +51,32 @@ const CreateProduct = () => {
             }, 500);
         } catch (err) {
             console.log(err)
-             console.log("Full Error:", err)
-                  console.log("Error Response:", err.response)
-                  console.log("Status Code:", err.response?.status)
-                  console.log("Error Message:", err.response?.data?.message)
+            console.log("Full Error:", err)
+            console.log("Error Response:", err.response)
+            console.log("Status Code:", err.response?.status)
+            console.log("Error Message:", err.response?.data?.message)
             setError('Product not create!')
         } finally {
             setIsLoading(false)
         }
     }
+
     return (
         <Motion>
             <div className="w-full h-screen">
                 <div className='w-full h-15 flex '>
-                    <div className=' w-40 ml-5 flex justify-center  items-center '>
-                        <a href='/EliteStore'> <div className='flex items-center gap-2'>
-          <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
-           <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
-        </div></a>
-                       
+                    <div className=' w-40 ml-5 flex justify-center items-center '>
+                        <a href='/EliteStore'> 
+                            <div className='flex items-center gap-2'>
+                                <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
+                                <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div className=' md:py-5 pt-10  px-5  items-center flex justify-center flex-col '>
-                    <div className=' px-5  rounded-2xl border-gray-500/90 border-2 '>
-                        <div className='pt-3  flex flex-col items-center justify-center'>
+                <div className=' md:py-5 pt-10 px-5 items-center flex justify-center flex-col '>
+                    <div className=' px-5 rounded-2xl border-gray-500/90 border-2 '>
+                        <div className='pt-3 flex flex-col items-center justify-center'>
                             <h1 className='text-4xl font-semibold'>Create <span className='text-[#FF6200]'>Product</span></h1>
 
                             {Error && (
@@ -119,7 +125,7 @@ const CreateProduct = () => {
                                 <div className='flex justify-around items-center gap-2'>
                                     <label>
                                         <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Size</p> <p className='text-xs text-[10px]'>(Optional)</p></div>
-                                        <select onChange={(e) => { setSize(e.target.value) }} className='border-2  px-15 rounded-xl border-gray-500 pl-3  py-1 w-full' name="Size" >
+                                        <select onChange={(e) => { setSize(e.target.value) }} className='border-2 px-15 rounded-xl border-gray-500 pl-3 py-1 w-full' name="Size" >
                                             <option value="" hidden>Select Size</option>
                                             <option value="3XL">3XL</option>
                                             <option value="XXL">XXL</option>
@@ -132,7 +138,7 @@ const CreateProduct = () => {
                                     </label>
                                     <label>
                                         <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Color</p> <p className='text-xs text-[10px] '>(Optional)</p></div>
-                                        <select onChange={(e) => { setColor(e.target.value) }} className='border-2  px-15 rounded-xl border-gray-500 pl-3 py-1 w-full' name="Color" >
+                                        <select onChange={(e) => { setColor(e.target.value) }} className='border-2 px-15 rounded-xl border-gray-500 pl-3 py-1 w-full' name="Color" >
                                             <option value="" hidden>Select Color</option>
                                             <option value="Black">Black</option>
                                             <option value="White">White</option>
@@ -151,7 +157,7 @@ const CreateProduct = () => {
                                 </div>
                                 <label>
                                     <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Category</p> <p className='text-xs text-[10px]'>(Optional)</p></div>
-                                    <select required onChange={(e) => { setCategory(e.target.value) }} className='border-2  px-5 rounded-xl border-gray-500 pl-3 py-1 w-full' name="Category" >
+                                    <select required onChange={(e) => { setCategory(e.target.value) }} className='border-2 px-5 rounded-xl border-gray-500 pl-3 py-1 w-full' name="Category" >
                                         <option value="" hidden>Select Category</option>
                                         <option value="Electronics">Electronics</option>
                                         <option value="Clothing">Clothing</option>
@@ -168,9 +174,7 @@ const CreateProduct = () => {
                             </div>
                         </form>
                     </div>
-
                 </div>
-
             </div>
         </Motion>
     )

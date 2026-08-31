@@ -5,6 +5,9 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import EliteStoreText from '../assets/EliteStoreText.png'
 import { cartContext } from '../context/Context'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
+
 const Home = () => {
   const { setCartInfo, cartInfo } = useContext(cartContext)
   const [isOpen, setIsOpen] = useState(false)
@@ -16,21 +19,22 @@ const Home = () => {
   const [inputVal, setInputVal] = useState('')
   const [getVal, setgetVal] = useState('')
   const categories = ['All', 'Electronics', 'Clothing', 'Books', 'Food', 'Home', 'Beauty']
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/product/all-products', {
+        const response = await axios.get(`${API_URL}/product/all-products`, {
           withCredentials: true
         })
         setProducts(response.data?.products)
 
-        const secResponse = await axios.get('http://localhost:4000/api/auth/admin-info', {
+        const secResponse = await axios.get(`${API_URL}/auth/admin-info`, {
           withCredentials: true
         })
         setAdminInfo(secResponse.data?.admin)
 
         try {
-          const cartResponse = await axios.get('http://localhost:4000/api/cart/cart', {
+          const cartResponse = await axios.get(`${API_URL}/cart/cart`, {
             withCredentials: true
           })
           setCartInfo(cartResponse.data?.cart || null)
@@ -52,9 +56,8 @@ const Home = () => {
   }, [setCartInfo])
 
   const cartData = async (productId) => {
-
     try {
-      const thirdResponse = await axios.post(`http://localhost:4000/api/cart/item/${productId}`, {
+      const thirdResponse = await axios.post(`${API_URL}/cart/item/${productId}`, {
         quantity: 1,
       }, {
         withCredentials: true
@@ -65,9 +68,8 @@ const Home = () => {
       console.log('❌ Error:', err);
       console.log('❌ Error Response:', err.response?.data);
     }
-
-
   }
+
   const filteredByCategory = selectedCategory === 'All'
     ? products
     : products.filter((product) => product.category === selectedCategory)
@@ -77,26 +79,27 @@ const Home = () => {
     : filteredByCategory.filter((product) =>
       product.productName.toLowerCase().includes(getVal.toLowerCase())
     )
+
   if (loading) {
-      return (
-        <div className=' bg-gray-50'>
-          <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
-            <a href='/EliteStore'>
-              <div className='flex items-center gap-2'>
-                <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
-                <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
-              </div>
-            </a>
-          </div>
-          <div className='flex items-center justify-center h-96'>
-            <div className='text-center'>
-              <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF6200] mx-auto'></div>
-              <p className='mt-4 text-gray-600'>Loading EliteStore...</p>
+    return (
+      <div className='bg-gray-50'>
+        <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
+          <a href='/EliteStore'>
+            <div className='flex items-center gap-2'>
+              <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
+              <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
             </div>
+          </a>
+        </div>
+        <div className='flex items-center justify-center h-96'>
+          <div className='text-center'>
+            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF6200] mx-auto'></div>
+            <p className='mt-4 text-gray-600'>Loading EliteStore...</p>
           </div>
         </div>
-      )
-    }
+      </div>
+    )
+  }
 
   if (error) {
     return (
@@ -109,10 +112,12 @@ const Home = () => {
   return (
     <div className="w-full relative min-h-screen bg-gray-50">
       <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
-        <a href='/EliteStore'> <div className='flex items-center gap-2'>
-          <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
-          <span className="text-xl font-bold text-[#131921]"> <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" /></span>
-        </div></a>
+        <a href='/EliteStore'>
+          <div className='flex items-center gap-2'>
+            <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
+            <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
+          </div>
+        </a>
 
         <div className='hidden md:flex flex-1 max-w-xl mx-4'>
           <input
@@ -136,7 +141,7 @@ const Home = () => {
             <Truck size={24} className="text-[#131921]" />
           </Link>
 
-           <Link to="/cart-page" className="relative hover:text-[#FF6200] transition">
+          <Link to="/cart-page" className="relative hover:text-[#FF6200] transition">
             <ShoppingCart size={24} className="text-[#131921]" />
             <span className='absolute -top-2 -right-2 bg-[#FF6200] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center'>{cartInfo?.totalItems || 0}</span>
           </Link>
@@ -144,9 +149,8 @@ const Home = () => {
           <Link to="/user-login" className="hidden md:block text-[#131921] hover:text-[#FF6200] transition">
             Login
           </Link>
-          
 
-          {adminInfo ? <Link to='/admin-board'> <img className='rounded-full w-10 h-10 border-2 border-[#FF6200]' src={adminInfo?.adminImage} alt="Profile" /></Link> : ""}
+          {adminInfo ? <Link to='/admin-board'><img className='rounded-full w-10 h-10 border-2 border-[#FF6200]' src={adminInfo?.adminImage} alt="Profile" /></Link> : ""}
 
           <button className='md:hidden text-[#131921]' onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -162,7 +166,6 @@ const Home = () => {
           <div className='flex'>
             <input
               onChange={(e) => setInputVal(e.target.value)}
-
               className='flex-1 px-4 py-2 rounded-l-lg border border-gray-300 text-black focus:outline-none'
               type="text"
               placeholder='Search...'
@@ -193,7 +196,7 @@ const Home = () => {
                 className={`cursor-pointer px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${selectedCategory === cat
                   ? 'bg-[#FF6200] text-white'
                   : 'hover:text-[#FF6200] hover:bg-orange-50'
-                  }`}
+                }`}
               >
                 {cat}
               </li>
@@ -264,13 +267,13 @@ const Home = () => {
                           <span className='text-red-500 text-xs font-semibold'>✗ Out of Stock</span>
                         )}
                       </div>
-                      
+
                       <button
                         onClick={() => { cartData(product._id) }}
                         className={`font-semibold cursor-pointer w-full mt-3 py-2 rounded-lg transition-all duration-300 ${product.stock > 0
                           ? 'bg-[#FF6200] text-white hover:bg-[#e55a00]'
                           : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                          }`}
+                        }`}
                         disabled={product.stock === 0}
                       >
                         {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
