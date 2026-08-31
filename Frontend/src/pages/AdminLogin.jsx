@@ -21,7 +21,7 @@ const AdminLogin = () => {
     setRegistered('')
     try {
       setIsLoading(true)
-      await axios.post('http://localhost:4000/api/auth/admin-login', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/admin-login`, {
         email: email,
         password: password
       }, {

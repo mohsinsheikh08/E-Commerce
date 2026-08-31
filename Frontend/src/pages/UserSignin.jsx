@@ -25,7 +25,7 @@ const UserSignin = () => {
     setPassword('')
     try {
       setIsLoading(true)
-      await axios.post('http://localhost:4000/api/auth/register', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
         fullName: {
           firstName: firstName,
           lastName: lastName

@@ -17,22 +17,22 @@ const Home = () => {
   const [inputVal, setInputVal] = useState('')
   const [getVal, setgetVal] = useState('')
   const categories = ['All', 'Electronics', 'Clothing', 'Books', 'Food', 'Home', 'Beauty']
-
+  console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/product/all-products', {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/product/all-products`, {
           withCredentials: true
         })
         setProducts(response.data?.products)
 
-        const secResponse = await axios.get('http://localhost:4000/api/auth/admin-info', {
+        const secResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/admin-info`, {
           withCredentials: true
         })
         setAdminInfo(secResponse.data?.admin)
 
         try {
-          const cartResponse = await axios.get('http://localhost:4000/api/cart/cart', {
+          const cartResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/cart/cart`, {
             withCredentials: true
           })
           setCartInfo(cartResponse.data?.cart || null)
@@ -194,7 +194,7 @@ const Home = () => {
                 className={`cursor-pointer px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${selectedCategory === cat
                   ? 'bg-[#FF6200] text-white'
                   : 'hover:text-[#FF6200] hover:bg-orange-50'
-                }`}
+                  }`}
               >
                 {cat}
               </li>
@@ -271,7 +271,7 @@ const Home = () => {
                         className={`font-semibold cursor-pointer w-full mt-3 py-2 rounded-lg transition-all duration-300 ${product.stock > 0
                           ? 'bg-[#FF6200] text-white hover:bg-[#e55a00]'
                           : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                        }`}
+                          }`}
                         disabled={product.stock === 0}
                       >
                         {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}

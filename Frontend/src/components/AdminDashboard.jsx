@@ -29,13 +29,13 @@ const AdminDashboard = () => {
   useEffect(() => {
     const getStats = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/auth/admin-stats', {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/admin-stats`, {
           withCredentials: true
         })
         setStats(response.data.stats)
         console.log('Stats:', response.data.stats)
 
-        const adminResponse = await axios.get('http://localhost:4000/api/auth/admin-info', {
+        const adminResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/admin-info`, {
           withCredentials: true
         })
         setAdminInfo(adminResponse.data.admin)
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:4000/api/auth/admin-logout', {
+      await axios.get( `${import.meta.env.VITE_API_URL}/api/auth/admin-logout`, {
         withCredentials: true
       })
       navigate('/admin-login')

@@ -13,7 +13,7 @@ const CartPage = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const cartResponse = await axios.get('http://localhost:4000/api/cart/cart', {
+        const cartResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/cart/cart`, {
           withCredentials: true
         })
         setCartInfo(cartResponse.data?.cart || null)
@@ -35,7 +35,7 @@ const CartPage = () => {
     }
 
     try {
-      const response = await axios.delete(`http://localhost:4000/api/cart/${productId}`, {
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart/${productId}`, {
         withCredentials: true
       })
       setCartInfo(response?.data?.cart || null)

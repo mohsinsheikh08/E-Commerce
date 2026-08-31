@@ -21,7 +21,7 @@ const OrderInfo = () => {
     e.preventDefault();
     try {
       setIsLoading(true)
-      await axios.post('http://localhost:4000/api/order/add-order', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/order/add-order`, {
         'paymentMethod': paymentMethod,
         'address': {
           'street': street,

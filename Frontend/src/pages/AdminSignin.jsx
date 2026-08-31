@@ -48,7 +48,7 @@ const AdminSignin = () => {
 
     try {
       setIsLoading(true)
-      await axios.post('http://localhost:4000/api/auth/admin-register', formData, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/admin-register`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true
       })
