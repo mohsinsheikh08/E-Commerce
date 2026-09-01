@@ -15,7 +15,7 @@ const OrderSuccess = () => {
       const fetchLastOrder = async () => {
         try {
           setLoading(true)
-          const response = await axios.get(`${import.meta.env.VITE_API_URL}i/api/order/my-orders`, {
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/order/my-orders`, {
             withCredentials: true
           })
           const orders = response.data.order || []

@@ -55,7 +55,7 @@ const Home = () => {
 
   const cartData = async (productId) => {
     try {
-      const thirdResponse = await axios.post(`http://localhost:4000/api/cart/item/${productId}`, {
+      const thirdResponse = await axios.post(`${import.meta.env.VITE_API_URL}/api/cart/item/${productId}`, {
         quantity: 1,
       }, {
         withCredentials: true

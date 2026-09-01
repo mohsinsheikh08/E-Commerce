@@ -33,7 +33,11 @@ const userRegister = async (req, res) => {
             role: user.role
         }, process.env.JWT_KEY);
 
-        res.cookie('token', token);
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none'
+        });
 
         res.status(201).json({
             message: "User registered successfully!",
@@ -74,7 +78,11 @@ const userLogin = async (req, res) => {
             id: user._id,
             role: user.role
         }, process.env.JWT_KEY)
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none'
+        });
         res.status(201).json({
             message: "User login successfully!",
             user: {
@@ -142,7 +150,11 @@ const adminRegister = async (req, res) => {
             role: "Admin"
         }, process.env.JWT_KEY)
 
-        res.cookie('token', token);
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none'
+        });
 
         return res.status(201).json({
             message: "Admin registered successfully!",
@@ -188,7 +200,11 @@ const adminLogin = async (req, res) => {
             role: "Admin"
         }, process.env.JWT_KEY)
 
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none'
+        });
 
         res.status(201).json({
             message: "Admin login successfully!",
@@ -222,24 +238,24 @@ const adminLogout = async (req, res) => {
 }
 
 const AdminInfo = async (req, res) => {
-   try{
-     const token = req.cookies.token;
-    console.log(token)
+    try {
+        const token = req.cookies.token;
+        console.log(token)
 
-    const decoded = jwt.verify(token, process.env.JWT_KEY);
+        const decoded = jwt.verify(token, process.env.JWT_KEY);
 
-    const admin = await adminModel.findById(decoded.id);
+        const admin = await adminModel.findById(decoded.id);
 
-    res.status(200).json({
-        message: "Admin info fetched successfully!",
-        admin: admin
-    })
-   }catch(err){
-    return res.status(409).json({
-        messsage: "Something is wrong!",
-        Error: err.message
-    })
-   }
+        res.status(200).json({
+            message: "Admin info fetched successfully!",
+            admin: admin
+        })
+    } catch (err) {
+        return res.status(409).json({
+            messsage: "Something is wrong!",
+            Error: err.message
+        })
+    }
 }
 
 const getStats = async (req, res) => {
@@ -369,7 +385,7 @@ const getAllProducts = async (req, res) => {
             message: "Products fetched successfully!",
             products
         })
-    }catch(err){
+    } catch (err) {
         return res.status(409).json({
             message: "Something is wrong!",
             Error: err.message
