@@ -82,7 +82,7 @@ const CartPage = () => {
           <h2 className='text-2xl font-bold text-gray-700'>Your cart is empty</h2>
           <p className='text-gray-500 mt-2'>Looks like you haven't added anything yet.</p>
           <Link to='/'>
-            <button className='mt-6 bg-[#CC0000] text-white px-6 py-2 rounded-lg hover:bg-[#e05500] transition'>
+            <button className='mt-6 bg-[#CC0000] text-white px-6 py-2 rounded-lg hover:bg-[#E60000] transition'>
               Start Shopping
             </button>
           </Link>

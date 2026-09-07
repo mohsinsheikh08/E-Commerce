@@ -16,11 +16,6 @@ const createProduct = async (req, res) => {
                 message: "Invalid credintials!"
             })
         }
-        if (decoded.role === "User") {
-            return res.status(403).json({
-                message: "User can not access this page!"
-            })
-        }
         const { productName, description, price, category, stock, brandName, size, color, discount, tax } = req.body;
         const result = await uploadFile(req.file.buffer)
         const product = await productModel.create({

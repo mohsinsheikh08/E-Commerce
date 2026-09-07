@@ -267,7 +267,7 @@ const ProductPage = () => {
                         <button
                             onClick={() => { cartData(product._id) }}
                             disabled={product.stock === 0} className={`
-                            ${product.stock === 0 ? "w-full bg-[#CC0000] cursor-not-allowed text-white font-bold py-2 mt-2 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]" : "w-full bg-[#CC0000] hover:bg-[#CC0000] text-white font-bold mt-3 py-1.5 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"}
+                            ${product.stock === 0 ? "w-full bg-[#CC0000] hover:bg-[#E60000] cursor-not-allowed text-white font-bold py-2 mt-2 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]" : "w-full bg-[#CC0000] hover:bg-[#CC0000] text-white font-bold mt-3 py-1.5 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"}
                         `}>
                             {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
                         </button>

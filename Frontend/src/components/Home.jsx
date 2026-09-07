@@ -129,7 +129,7 @@ const Home = () => {
             type="text"
             placeholder='Search EliteStore'
           />
-          <button onClick={() => { setgetVal(inputVal) }} className='bg-[#CC0000] px-4 rounded-r-lg hover:bg-[#e55a00] transition text-white'>
+          <button onClick={() => { setgetVal(inputVal) }} className='bg-[#CC0000] px-4 rounded-r-lg  hover:bg-[#E60000] transition text-white'>
             <Search size={20} />
           </button>
         </div>
@@ -269,7 +269,7 @@ const Home = () => {
                       <button
                         onClick={() => { cartData(product._id) }}
                         className={`font-semibold cursor-pointer w-full mt-3 py-2 rounded-lg transition-all duration-300 ${product.stock > 0
-                          ? 'bg-[#CC0000] text-white hover:bg-[#e55a00]'
+                          ? 'bg-[#CC0000] text-white hover:bg-[#E60000]'
                           : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                           }`}
                         disabled={product.stock === 0}
