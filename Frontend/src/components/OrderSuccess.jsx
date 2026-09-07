@@ -48,7 +48,7 @@ const OrderSuccess = () => {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <p className="text-gray-500">No order found.</p>
-          <Link to="/EliteStore" className="text-[#FF6200]">Go to Home</Link>
+          <Link to="/" className="text-[#FF6200]">Go to Home</Link>
         </div>
       </div>
     )
@@ -76,7 +76,7 @@ const OrderSuccess = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
-        <a href='/EliteStore'>
+        <a href='/'>
           <div className='flex items-center gap-2'>
             <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
             <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />

@@ -40,7 +40,7 @@ const ProductPage = () => {
         return (
             <div className='bg-gray-50'>
                 <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
-                    <a href='/EliteStore'>
+                    <a href='/'>
                         <div className='flex items-center gap-2'>
                             <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
                             <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
@@ -61,7 +61,7 @@ const ProductPage = () => {
         <div className="min-h-screen bg-gray-100">
             <div className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
                 <div className="flex items-center justify-between px-4 h-16 max-w-7xl mx-auto">
-                    <a href='/EliteStore'>
+                    <a href='/'>
                         <div className='flex items-center gap-2'>
                             <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
                             <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
@@ -71,7 +71,7 @@ const ProductPage = () => {
             </div>
 
             <div className="px-4 py-3 max-w-7xl mx-auto">
-                <Link to='/EliteStore'>
+                <Link to='/'>
                     <p className="inline-flex items-center gap-2 text-[#FF6200] font-semibold hover:text-[#e05500] transition-colors duration-200">
                         <MoveLeft size={18} />
                         Back to Products

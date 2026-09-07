@@ -31,7 +31,7 @@ const UserLogin = () => {
       })
       setRegistered('User logged in successfully!')
       setTimeout(() => {
-        navigate('/EliteStore')
+        navigate('/')
       }, 500);
     } catch (err) {
       console.log(err)

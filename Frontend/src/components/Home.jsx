@@ -82,7 +82,7 @@ const Home = () => {
     return (
       <div className='bg-gray-50'>
         <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
-          <a href='/EliteStore'>
+          <a href='/'>
             <div className='flex items-center gap-2'>
               <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
               <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
@@ -110,7 +110,7 @@ const Home = () => {
   return (
     <div className="w-full relative min-h-screen bg-gray-50">
       <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
-        <a href='/EliteStore'>
+        <a href='/'>
           <div className='flex items-center gap-2'>
             <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
             <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />

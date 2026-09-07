@@ -45,7 +45,7 @@ const CreateProduct = () => {
             })
             setRegistered('Product created successfully!')
             setTimeout(() => {
-                navigate('/EliteStore')
+                navigate('/')
             }, 500);
         } catch (err) {
             console.log(err)
@@ -64,7 +64,7 @@ const CreateProduct = () => {
             <div className="w-full h-screen">
                 <div className='w-full h-15 flex '>
                     <div className=' w-40 ml-5 flex justify-center items-center '>
-                        <a href='/EliteStore'> 
+                        <a href='/'> 
                             <div className='flex items-center gap-2'>
                                 <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
                                 <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />

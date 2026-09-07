@@ -49,7 +49,7 @@ const CartPage = () => {
     return (
       <div className='bg-gray-50'>
         <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
-          <a href='/EliteStore'>
+          <a href='/'>
             <div className='flex items-center gap-2'>
               <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
               <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
@@ -70,7 +70,7 @@ const CartPage = () => {
     return (
       <div className='min-h-screen bg-gray-50'>
         <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
-          <a href='/EliteStore'>
+          <a href='/'>
             <div className='flex items-center gap-2'>
               <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
               <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
@@ -81,7 +81,7 @@ const CartPage = () => {
           <div className='text-6xl mb-4'>🛒</div>
           <h2 className='text-2xl font-bold text-gray-700'>Your cart is empty</h2>
           <p className='text-gray-500 mt-2'>Looks like you haven't added anything yet.</p>
-          <Link to='/EliteStore'>
+          <Link to='/'>
             <button className='mt-6 bg-[#FF6200] text-white px-6 py-2 rounded-lg hover:bg-[#e05500] transition'>
               Start Shopping
             </button>
@@ -94,7 +94,7 @@ const CartPage = () => {
   return (
     <div className='bg-gray-50 min-h-screen'>
       <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
-        <a href='/EliteStore'>
+        <a href='/'>
           <div className='flex items-center gap-2'>
             <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
             <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />

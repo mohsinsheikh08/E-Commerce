@@ -54,7 +54,7 @@ const AdminSignin = () => {
       })
       setRegistered('Admin registered successfully!')
       setTimeout(() => {
-        navigate('/EliteStore')
+        navigate('/')
       }, 500);
     } catch (err) {
       setError('Admin not registered!')

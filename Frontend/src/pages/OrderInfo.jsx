@@ -35,7 +35,7 @@ const OrderInfo = () => {
       })
       setRegistered('Order placed successfully!')
       setTimeout(() => {
-        navigate('/EliteStore')
+        navigate('/')
       }, 500);
     } catch (err) {
       setError('Order not place!')
@@ -51,7 +51,7 @@ const OrderInfo = () => {
   return (
     <Motion>
       <div className='w-full h-15 flex '>
-        <a href='/EliteStore'>
+        <a href='/'>
           <div className=' w-40 ml-5 py-3 flex justify-center items-center '>
             <img className='w-full h-10 object-contain' src={DarkEliteStore} alt="Logo" />
             <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
