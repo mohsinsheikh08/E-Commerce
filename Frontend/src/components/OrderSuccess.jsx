@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import axios from 'axios'
 import EliteStoreText from '../assets/EliteStoreText.png'
-import DarkEliteStore from '../assets/darklogo.png'
+import DarkEliteStore from '../assets/EliteStore.png'
 
 const OrderSuccess = () => {
   const location = useLocation()
@@ -36,7 +36,7 @@ const OrderSuccess = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF6200] mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#CC0000] mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading order...</p>
         </div>
       </div>
@@ -48,7 +48,7 @@ const OrderSuccess = () => {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <p className="text-gray-500">No order found.</p>
-          <Link to="/" className="text-[#FF6200]">Go to Home</Link>
+          <Link to="/" className="text-[#CC0000]">Go to Home</Link>
         </div>
       </div>
     )
@@ -149,7 +149,7 @@ const OrderSuccess = () => {
           </div>
           <div className="text-right">
             <p className="text-sm text-gray-500">Total Amount</p>
-            <p className="text-2xl font-bold text-[#FF6200]">
+            <p className="text-2xl font-bold text-[#CC0000]">
               Rs. {Math.floor(order?.totalPrice || 0).toLocaleString()}
             </p>
           </div>

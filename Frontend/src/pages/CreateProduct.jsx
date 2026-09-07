@@ -1,5 +1,5 @@
 import EliteStoreText from '../assets/EliteStoreText.png'
-import DarkEliteStore from '../assets/darklogo.png'
+import DarkEliteStore from '../assets/EliteStore.png'
 import Motion from '../Features/Motion'
 import { useState } from 'react'
 import axios from 'axios'
@@ -75,7 +75,7 @@ const CreateProduct = () => {
                 <div className=' md:py-5 pt-10 px-5 items-center flex justify-center flex-col '>
                     <div className=' px-5 rounded-2xl border-gray-500/90 border-2 '>
                         <div className='pt-3 flex flex-col items-center justify-center'>
-                            <h1 className='text-4xl font-semibold'>Create <span className='text-[#FF6200]'>Product</span></h1>
+                            <h1 className='text-4xl font-semibold'>Create <span className='text-[#CC0000]'>Product</span></h1>
 
                             {Error && (
                                 <p className='text-red-500 text-xs mt-2'>{Error}</p>
@@ -87,42 +87,42 @@ const CreateProduct = () => {
                         <form className='mx-4' onSubmit={(e) => { submitHandler(e) }}>
                             <div className=' gap-5'>
                                 <label>
-                                    <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Name</p>
+                                    <p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Name</p>
                                     <input required value={productName} onChange={(e) => { setProductName(e.target.value) }} className='border-2 rounded-xl border-gray-500 pl-3 py-1 w-full' type="text" placeholder='Write product name!' />
                                 </label>
                                 <label>
-                                    <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Image</p>
+                                    <p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Image</p>
                                     <input required onChange={(e) => { setProductImage(e.target.files[0]) }} className='border-2 rounded-xl border-gray-500 pl-3 py-1 w-full' type="file" accept='image/*' />
                                 </label>
                                 <label>
-                                    <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Description</p>
+                                    <p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Description</p>
                                     <textarea required value={description} onChange={(e) => { setDescription(e.target.value) }} className='border-2 rounded-xl border-gray-500 pl-3 py-1 w-full' type="text" placeholder='Write product description!' />
                                 </label>
                                 <label>
-                                    <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Brand Name</p>
+                                    <p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Brand Name</p>
                                     <input required value={brandName} onChange={(e) => { setbrandName(e.target.value) }} className='border-2 rounded-xl border-gray-500 pl-3 py-1 w-full' type="text" placeholder='Write brand name!' />
                                 </label>
                                 <div className='flex gap-2'>
                                     <label>
-                                        <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Price</p>
+                                        <p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Price</p>
                                         <input required value={price} onChange={(e) => { setPrice(e.target.value) }} className='border-2 rounded-xl border-gray-500 pl-3 py-1 w-full' type="number" placeholder='Write product price!' />
                                     </label>
                                     <label>
-                                        <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Stock</p>
+                                        <p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Stock</p>
                                         <input required value={stock} onChange={(e) => { setStock(e.target.value) }} className='border-2 rounded-xl border-gray-500 pl-3 py-1 w-full' type="number" placeholder='Write product stock!' />
                                     </label>
                                 </div>
                                 <label>
-                                    <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Discount</p> <p className='text-[10px]'>(Optional)</p></div>
+                                    <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Discount</p> <p className='text-[10px]'>(Optional)</p></div>
                                     <input value={discount} onChange={(e) => { setDiscount(e.target.value) }} className='border-2 rounded-xl border-gray-500 pl-3 py-1 w-full' type="number" placeholder='Write discount!' />
                                 </label>
                                 <label>
-                                    <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Tax</p> <p className='text-xs text-[10px]'>(Optional)</p></div>
+                                    <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Tax</p> <p className='text-xs text-[10px]'>(Optional)</p></div>
                                     <input value={tax} onChange={(e) => { setTax(e.target.value) }} className='border-2 rounded-xl border-gray-500 pl-3 py-1 w-full' type="number" placeholder='Write product tax!' />
                                 </label>
                                 <div className='flex justify-around items-center gap-2'>
                                     <label>
-                                        <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Size</p> <p className='text-xs text-[10px]'>(Optional)</p></div>
+                                        <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Size</p> <p className='text-xs text-[10px]'>(Optional)</p></div>
                                         <select onChange={(e) => { setSize(e.target.value) }} className='border-2 px-15 rounded-xl border-gray-500 pl-3 py-1 w-full' name="Size" >
                                             <option value="" hidden>Select Size</option>
                                             <option value="3XL">3XL</option>
@@ -135,7 +135,7 @@ const CreateProduct = () => {
                                         </select>
                                     </label>
                                     <label>
-                                        <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Color</p> <p className='text-xs text-[10px] '>(Optional)</p></div>
+                                        <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Color</p> <p className='text-xs text-[10px] '>(Optional)</p></div>
                                         <select onChange={(e) => { setColor(e.target.value) }} className='border-2 px-15 rounded-xl border-gray-500 pl-3 py-1 w-full' name="Color" >
                                             <option value="" hidden>Select Color</option>
                                             <option value="Black">Black</option>
@@ -154,7 +154,7 @@ const CreateProduct = () => {
                                     </label>
                                 </div>
                                 <label>
-                                    <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Category</p> <p className='text-xs text-[10px]'>(Optional)</p></div>
+                                    <div className='flex items-center gap-2'><p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Category</p> <p className='text-xs text-[10px]'>(Optional)</p></div>
                                     <select required onChange={(e) => { setCategory(e.target.value) }} className='border-2 px-5 rounded-xl border-gray-500 pl-3 py-1 w-full' name="Category" >
                                         <option value="" hidden>Select Category</option>
                                         <option value="Electronics">Electronics</option>
@@ -168,7 +168,7 @@ const CreateProduct = () => {
                                 </label>
                             </div>
                             <div className='w-full py-5 flex justify-center items-center'>
-                                <button className="bg-[#FF6200] text-[#ffff] font-semibold py-2 px-3 rounded-lg" type='submit'>{!isLoading ? "Create Product" : "Creating..."}</button>
+                                <button className="bg-[#CC0000] text-[#ffff] font-semibold py-2 px-3 rounded-lg" type='submit'>{!isLoading ? "Create Product" : "Creating..."}</button>
                             </div>
                         </form>
                     </div>

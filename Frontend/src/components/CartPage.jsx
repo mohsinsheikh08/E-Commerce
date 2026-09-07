@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import EliteStoreText from '../assets/EliteStoreText.png'
-import DarkEliteStore from '../assets/darklogo.png'
+import DarkEliteStore from '../assets/EliteStore.png'
 import { cartContext } from '../context/Context'
 import Iphone from '../images/Iphone.jpg'
 
@@ -58,7 +58,7 @@ const CartPage = () => {
         </div>
         <div className='flex items-center justify-center h-96'>
           <div className='text-center'>
-            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF6200] mx-auto'></div>
+            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[#CC0000] mx-auto'></div>
             <p className='mt-4 text-gray-600'>Loading cart...</p>
           </div>
         </div>
@@ -82,7 +82,7 @@ const CartPage = () => {
           <h2 className='text-2xl font-bold text-gray-700'>Your cart is empty</h2>
           <p className='text-gray-500 mt-2'>Looks like you haven't added anything yet.</p>
           <Link to='/'>
-            <button className='mt-6 bg-[#FF6200] text-white px-6 py-2 rounded-lg hover:bg-[#e05500] transition'>
+            <button className='mt-6 bg-[#CC0000] text-white px-6 py-2 rounded-lg hover:bg-[#e05500] transition'>
               Start Shopping
             </button>
           </Link>
@@ -104,7 +104,7 @@ const CartPage = () => {
 
       <div className='w-full bg-gray-200 p-1 px-5'>
         <div className='w-full bg-gray-200 flex font-semibold justify-end items-center'>
-          <p>Product: <span className='text-[#FF6200]'>{cartInfo?.totalItems || 0}</span></p>
+          <p>Product: <span className='text-[#CC0000]'>{cartInfo?.totalItems || 0}</span></p>
         </div>
       </div>
 
@@ -141,10 +141,10 @@ const CartPage = () => {
                       <span>Qty:</span>
                       <span className='font-semibold'>{item.quantity}</span>
                     </div>
-                    <p className='text-sm font-bold text-[#FF6200]'>
+                    <p className='text-sm font-bold text-[#CC0000]'>
                       Subtotal: Rs. {((item?.price || 0) * (item?.quantity || 1)).toLocaleString()}
                     </p>
-                    <button onClick={() => { deleteData(productId) }} className='font-bold border-[#FF6200] text-[#FF6200] border-2 w-20 flex rounded-lg justify-center py-1 hover:bg-red-50 transition'>
+                    <button onClick={() => { deleteData(productId) }} className='font-bold border-[#CC0000] text-[#CC0000] border-2 w-20 flex rounded-lg justify-center py-1 hover:bg-red-50 transition'>
                       Delete
                     </button>
                   </div>
@@ -162,14 +162,14 @@ const CartPage = () => {
             </div>
             <div className='sm:text-right mt-2 sm:mt-0'>
               <p className='text-sm text-gray-500'>Total Amount</p>
-              <p className='text-3xl font-bold text-[#FF6200]'>
+              <p className='text-3xl font-bold text-[#CC0000]'>
                 Rs. {Math.floor(cartInfo?.totalPrice)?.toLocaleString() || 0}
               </p>
             </div>
           </div>
 
           <Link to='/order-info'>
-            <button className='w-full mt-5 bg-[#FF6200] text-white py-3 rounded-xl font-bold hover:bg-[#e05500] transition active:scale-[0.98]'>
+            <button className='w-full mt-5 bg-[#CC0000] text-white py-3 rounded-xl font-bold hover:bg-[#e05500] transition active:scale-[0.98]'>
               Proceed to Checkout
             </button>
           </Link>

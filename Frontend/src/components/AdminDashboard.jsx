@@ -12,7 +12,7 @@ import {
   LogOut,
 } from 'lucide-react'
 import EliteStoreText from '../assets/EliteStoreText.png'
-import DarkEliteStore from '../assets/darklogo.png'
+import DarkEliteStore from '../assets/EliteStore.png'
 
 const AdminDashboard = () => {
   const navigate = useNavigate()
@@ -69,7 +69,7 @@ const AdminDashboard = () => {
     return (
       <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
         <div className='text-center'>
-          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF6200] mx-auto'></div>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[#CC0000] mx-auto'></div>
           <p className='mt-4 text-gray-600'>Loading Dashboard...</p>
         </div>
       </div>
@@ -84,7 +84,7 @@ const AdminDashboard = () => {
           <h2 className='text-2xl font-bold text-gray-700'>Access Denied</h2>
           <p className='text-gray-500 mt-2'>{error}</p>
           <Link to='/admin-login'>
-            <button className='mt-6 bg-[#FF6200] text-white px-6 py-2 rounded-lg hover:bg-[#e05500] transition'>
+            <button className='mt-6 bg-[#CC0000] text-white px-6 py-2 rounded-lg hover:bg-[#e05500] transition'>
               Login as Admin
             </button>
           </Link>
@@ -129,7 +129,7 @@ const AdminDashboard = () => {
       {/* Header */}
       <div className='bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50'>
         <div className='max-w-7xl mx-auto px-4 h-16 flex justify-between items-center'>
-          <Link to='/EliteStore'>
+          <Link to='/'>
             <div className='flex items-center gap-2'>
               <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
               <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
@@ -179,10 +179,10 @@ const AdminDashboard = () => {
         {/* Quick Actions */}
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mb-6'>
           <Link to='/create-product'>
-            <div className='bg-white rounded-xl shadow-sm p-5 hover:shadow-md transition cursor-pointer border border-transparent hover:border-[#FF6200]'>
+            <div className='bg-white rounded-xl shadow-sm p-5 hover:shadow-md transition cursor-pointer border border-transparent hover:border-[#CC0000]'>
               <div className='flex items-center gap-4'>
-                <div className='bg-[#FF6200]/10 p-3 rounded-xl'>
-                  <PlusCircle className='text-[#FF6200] w-6 h-6' />
+                <div className='bg-[#CC0000]/10 p-3 rounded-xl'>
+                  <PlusCircle className='text-[#CC0000] w-6 h-6' />
                 </div>
                 <div>
                   <h3 className='font-semibold text-gray-800'>Add New Product</h3>
@@ -193,7 +193,7 @@ const AdminDashboard = () => {
           </Link>
 
           <Link to='/all-orders'>
-            <div className='bg-white rounded-xl shadow-sm p-5 hover:shadow-md transition cursor-pointer border border-transparent hover:border-[#FF6200]'>
+            <div className='bg-white rounded-xl shadow-sm p-5 hover:shadow-md transition cursor-pointer border border-transparent hover:border-[#CC0000]'>
               <div className='flex items-center gap-4'>
                 <div className='bg-blue-500/10 p-3 rounded-xl'>
                   <Eye className='text-blue-500 w-6 h-6' />
@@ -207,7 +207,7 @@ const AdminDashboard = () => {
           </Link>
 
           <Link to='/all-users'>
-            <div className='bg-white rounded-xl shadow-sm p-5 hover:shadow-md transition cursor-pointer border border-transparent hover:border-[#FF6200]'>
+            <div className='bg-white rounded-xl shadow-sm p-5 hover:shadow-md transition cursor-pointer border border-transparent hover:border-[#CC0000]'>
               <div className='flex items-center gap-4'>
                 <div className='bg-green-500/10 p-3 rounded-xl'>
                   <Users className='text-green-500 w-6 h-6' />
@@ -225,7 +225,7 @@ const AdminDashboard = () => {
         <div className='bg-white rounded-xl shadow-sm p-5'>
           <div className='flex justify-between items-center mb-4'>
             <h2 className='text-lg font-bold text-gray-800'>🛒 Recent Orders</h2>
-            <Link to='/all-orders' className='text-[#FF6200] text-sm font-semibold hover:underline'>
+            <Link to='/all-orders' className='text-[#CC0000] text-sm font-semibold hover:underline'>
               View All →
             </Link>
           </div>

@@ -1,5 +1,5 @@
 import EliteStoreText from '../assets/EliteStoreText.png'
-import DarkEliteStore from '../assets/darklogo.png'
+import DarkEliteStore from '../assets/EliteStore.png'
 import Motion from '../Features/Motion'
 import { useState } from 'react'
 import { Eye, EyeClosed } from 'lucide-react'
@@ -59,7 +59,7 @@ const UserSignin = () => {
         <div className=' md:py-5 items-center flex justify-center flex-col '>
           <div className=' rounded-2xl border-gray-500/90 border-2 '>
             <div className='pt-3 flex flex-col items-center justify-center'>
-              <h1 className='text-4xl font-semibold'>Sign <span className='text-[#FF6200]'>Up</span></h1>
+              <h1 className='text-4xl font-semibold'>Sign <span className='text-[#CC0000]'>Up</span></h1>
 
               {Error && (
                 <p className='text-red-500 text-xs mt-2'>{Error}</p>
@@ -72,21 +72,21 @@ const UserSignin = () => {
             <form className='mx-4' onSubmit={(e) => { submitHandler(e) }}>
               <div className=' gap-5'>
                 <label>
-                  <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> First Name</p>
+                  <p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> First Name</p>
                   <input value={firstName} onChange={(e) => { setFirstName(e.target.value) }} className='border-2 rounded-xl border-gray-500 pl-3 py-1 w-full' type="text" placeholder='Write first name!' />
                 </label>
                 <label>
-                  <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Last Name</p>
+                  <p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Last Name</p>
                   <input value={lastName} onChange={(e) => { setLastName(e.target.value) }} className='border-2 rounded-xl border-gray-500 pl-3 py-1 w-full' type="text" placeholder='Write last name!' />
                 </label>
               </div>
               <label>
                 <div>
-                  <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Email</p>
+                  <p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Email</p>
                   <input value={email} onChange={(e) => { setEmail(e.target.value) }} className='border-2 rounded-xl border-gray-500 pl-3 py-1 w-full' type="text" placeholder='Write your email!' />
                 </div>
                 <div>
-                  <p className='text-[#131921] font-semibold py-3'><span className='text-[#FF6200]'>*</span> Password</p>
+                  <p className='text-[#131921] font-semibold py-3'><span className='text-[#CC0000]'>*</span> Password</p>
                   <div className='flex justify-center items-center'>
                     <input value={password} onChange={(e) => { setPassword(e.target.value) }} className='border-2 border-r-0 rounded-tr-none rounded-br-none rounded-xl border-gray-500 pl-3 py-1 w-full ' type={!isPassword ? 'text' : 'password'} placeholder='Write your password!' />
                     <button type='button' onClick={() => { isPassword === true ? setIsPassword(false) : setIsPassword(true) }} className='border-2 py-1 cursor-pointer rounded-xl rounded-tl-none rounded-bl-none px-1 border-l-0 '>{!isPassword ? <Eye /> : <EyeClosed />}</button>
@@ -94,7 +94,7 @@ const UserSignin = () => {
                 </div>
               </label>
               <div className='w-full py-5 flex justify-center items-center'>
-                <button className="bg-[#FF6200] text-[#ffff] font-semibold py-2 px-3 rounded-lg" type='submit'>{!isLoading ? "Create Account" : "Creating..."}</button>
+                <button className="bg-[#CC0000] text-[#ffff] font-semibold py-2 px-3 rounded-lg" type='submit'>{!isLoading ? "Create Account" : "Creating..."}</button>
               </div>
             </form>
             <div className='w-full flex justify-center items-center'>

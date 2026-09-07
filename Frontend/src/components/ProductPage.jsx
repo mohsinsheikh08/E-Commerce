@@ -1,22 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import { Star, Minus, Plus, Truck, Shield, RotateCcw, MoveLeft } from 'lucide-react'
-import DarkEliteStore from '../assets/darklogo.png'
+import DarkEliteStore from '../assets/EliteStore.png'
 import EliteStoreText from '../assets/EliteStoreText.png'
+import { cartContext } from '../context/Context'
 
 const ProductPage = () => {
     const { id } = useParams();
+    const { setCartInfo } = useContext(cartContext)
     const [product, setproduct] = useState({})
     const [stockNum, setstockNum] = useState(1)
     const [loading, setLoading] = useState(false)
-    
+
     useEffect(() => {
         const getData = async () => {
             try {
                 setLoading(true)
                 const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/product/${id}`)
-                console.log(response.data.product)
                 setproduct(response.data.product)
             } catch (err) {
                 console.log(err)
@@ -36,6 +37,20 @@ const ProductPage = () => {
     const discountPrice = Math.floor((ProductPrice * discount) / 100)
     const productStock = product.stock;
 
+    const cartData = async (productId) => {
+        try {
+            const thirdResponse = await axios.post(`${import.meta.env.VITE_API_URL}/api/cart/item/${productId}`, {
+                quantity: stockNum,
+            }, {
+                withCredentials: true
+            })
+            setCartInfo(thirdResponse.data.cart)
+        } catch (err) {
+            console.log('❌ Error:', err);
+            console.log('❌ Error Response:', err.response?.data);
+        }
+    }
+
     if (loading) {
         return (
             <div className='bg-gray-50'>
@@ -49,7 +64,7 @@ const ProductPage = () => {
                 </div>
                 <div className='flex items-center justify-center h-96'>
                     <div className='text-center'>
-                        <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF6200] mx-auto'></div>
+                        <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[#CC0000] mx-auto'></div>
                         <p className='mt-4 text-gray-600'>Loading Product Page...</p>
                     </div>
                 </div>
@@ -72,7 +87,7 @@ const ProductPage = () => {
 
             <div className="px-4 py-3 max-w-7xl mx-auto">
                 <Link to='/'>
-                    <p className="inline-flex items-center gap-2 text-[#FF6200] font-semibold hover:text-[#e05500] transition-colors duration-200">
+                    <p className="inline-flex items-center gap-2 text-[#CC0000] font-semibold hover:text-[#e05500] transition-colors duration-200">
                         <MoveLeft size={18} />
                         Back to Products
                     </p>
@@ -115,7 +130,7 @@ const ProductPage = () => {
                                 <p className="text-sm line-through text-gray-400 font-medium">
                                     Rs. {discountPrice?.toLocaleString() || 0}
                                 </p>
-                                <span className="text-xs font-bold text-white bg-[#FF6200] px-3 py-1 rounded-full">
+                                <span className="text-xs font-bold text-white bg-[#CC0000] px-3 py-1 rounded-full">
                                     -{discount}% off
                                 </span>
                             </div>
@@ -178,8 +193,10 @@ const ProductPage = () => {
                                 </button>
                             </div>
                         </div>
-                        <button disabled={product.stock === 0} className={`
-                            ${product.stock === 0 ? "w-full bg-[#e25700] cursor-not-allowed text-white font-bold py-3 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]" : "w-full bg-[#FF6200] hover:bg-[#e05500] text-white font-bold py-3 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"}
+                        <button
+                            onClick={() => { cartData(product._id) }}
+                            disabled={product.stock === 0} className={`
+                            ${product.stock === 0 ? "w-full bg-[#CC0000] cursor-not-allowed text-white font-bold py-3 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]" : "w-full bg-[#CC0000] hover:bg-[#e05500] text-white font-bold py-3 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"}
                         `}>
                             {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
                         </button>
@@ -194,7 +211,7 @@ const ProductPage = () => {
                 <div className='w-[70%] gap-4 flex rounded-xl mx-4'>
                     <div className='w-[70%] rounded-xl bg-white flex flex-col gap-3 px-4 pt-4'>
                         <p className='text-xl lg:text-2xl font-semibold'>{product.productName}</p>
-                        <p className='text-[#ed5b00] text-md h-20 font-semibold line-clamp-3 text-sm pr-5 lg:text-lg'>{product.description}</p>
+                        <p className='text-[#CC0000] text-md h-20 font-semibold line-clamp-3 text-sm pr-5 lg:text-lg'>{product.description}</p>
                         <div className="flex items-center gap-2">
                             <div className="flex text-yellow-400">
                                 <Star size={16} fill="currentColor" />
@@ -215,7 +232,7 @@ const ProductPage = () => {
                                     <p className="text-md line-through text-gray-400 font-medium">
                                         Rs. {product.price}
                                     </p>
-                                    <span className="text-sm font-bold text-white bg-[#FF6200] px-3 py-1 rounded-full">
+                                    <span className="text-sm font-bold text-white bg-[#CC0000] px-3 py-1 rounded-full">
                                         -{discount}% off
                                     </span>
                                 </div>
@@ -247,8 +264,10 @@ const ProductPage = () => {
                                 </button>
                             </div>
                         </div>
-                        <button disabled={product.stock === 0} className={`
-                            ${product.stock === 0 ? "w-full bg-[#e25700] cursor-not-allowed text-white font-bold py-2 mt-2 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]" : "w-full bg-[#FF6200] hover:bg-[#e05500] text-white font-bold mt-3 py-1.5 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"}
+                        <button
+                            onClick={() => { cartData(product._id) }}
+                            disabled={product.stock === 0} className={`
+                            ${product.stock === 0 ? "w-full bg-[#CC0000] cursor-not-allowed text-white font-bold py-2 mt-2 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]" : "w-full bg-[#CC0000] hover:bg-[#CC0000] text-white font-bold mt-3 py-1.5 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"}
                         `}>
                             {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
                         </button>
@@ -287,15 +306,15 @@ const ProductPage = () => {
                             </div>
                         </div>
                         <div className="space-y-3 px-3 bg-gray-50 rounded-xl py-2">
-                            <div className="flex items-center gap-2.5 text-sm text-[#FF6200]">
+                            <div className="flex items-center gap-2.5 text-sm text-[#CC0000]">
                                 <Truck size={18} className="flex-shrink-0" />
                                 <p className="font-medium truncate">Free Delivery</p>
                             </div>
-                            <div className="flex items-center gap-2.5 text-sm text-[#FF6200]">
+                            <div className="flex items-center gap-2.5 text-sm text-[#CC0000]">
                                 <Shield size={18} className="flex-shrink-0" />
                                 <p className="font-medium truncate">Secure Payments</p>
                             </div>
-                            <div className="flex items-center gap-2.5 text-sm text-[#FF6200]">
+                            <div className="flex items-center gap-2.5 text-sm text-[#CC0000]">
                                 <RotateCcw size={18} className="flex-shrink-0" />
                                 <p className="font-medium truncate">30-Day Returns</p>
                             </div>

@@ -1,4 +1,4 @@
-import DarkEliteStore from '../assets/darklogo.png'
+import DarkEliteStore from '../assets/EliteStore.png'
 import { Search, Menu, X, ShoppingCart, Truck } from 'lucide-react'
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
@@ -91,7 +91,7 @@ const Home = () => {
         </div>
         <div className='flex items-center justify-center h-96'>
           <div className='text-center'>
-            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF6200] mx-auto'></div>
+            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[#CC0000] mx-auto'></div>
             <p className='mt-4 text-gray-600'>Loading EliteStore...</p>
           </div>
         </div>
@@ -125,30 +125,30 @@ const Home = () => {
                 setgetVal(inputVal)
               }
             }}
-            className='w-full px-4 py-2 rounded-l-lg border border-gray-300 text-black focus:outline-none focus:border-[#FF6200]'
+            className='w-full px-4 py-2 rounded-l-lg border border-gray-300 text-black focus:outline-none focus:border-[#CC0000]'
             type="text"
             placeholder='Search EliteStore'
           />
-          <button onClick={() => { setgetVal(inputVal) }} className='bg-[#FF6200] px-4 rounded-r-lg hover:bg-[#e55a00] transition text-white'>
+          <button onClick={() => { setgetVal(inputVal) }} className='bg-[#CC0000] px-4 rounded-r-lg hover:bg-[#e55a00] transition text-white'>
             <Search size={20} />
           </button>
         </div>
 
         <div className='flex items-center gap-4'>
-          <Link to="/order-history" className="relative hover:text-[#FF6200] transition">
+          <Link to="/order-history" className="relative hover:text-[#CC0000] transition">
             <Truck size={24} className="text-[#131921]" />
           </Link>
 
-          <Link to="/cart-page" className="relative hover:text-[#FF6200] transition">
+          <Link to="/cart-page" className="relative hover:text-[#CC0000] transition">
             <ShoppingCart size={24} className="text-[#131921]" />
-            <span className='absolute -top-2 -right-2 bg-[#FF6200] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center'>{cartInfo?.totalItems || 0}</span>
+            <span className='absolute -top-2 -right-2 bg-[#CC0000] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center'>{cartInfo?.totalItems || 0}</span>
           </Link>
 
-          <Link to="/user-login" className="hidden md:block text-[#131921] hover:text-[#FF6200] transition">
+          <Link to="/user-login" className="hidden md:block text-[#131921] hover:text-[#CC0000] transition">
             Login
           </Link>
 
-          {adminInfo ? <Link to='/admin-board'><img className='rounded-full w-10 h-10 border-2 border-[#FF6200]' src={adminInfo?.adminImage} alt="Profile" /></Link> : ""}
+          {adminInfo ? <Link to='/admin-board'><img className='rounded-full w-10 h-10 border-2 border-[#CC0000]' src={adminInfo?.adminImage} alt="Profile" /></Link> : ""}
 
           <button className='md:hidden text-[#131921]' onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -174,13 +174,13 @@ const Home = () => {
                   setgetVal(inputVal)
                 }
               }}
-              className='bg-[#FF6200] px-4 rounded-r-lg text-white'>
+              className='bg-[#CC0000] px-4 rounded-r-lg text-white'>
               <Search size={20} />
             </button>
           </div>
-          <Link to="/cart" className="block text-[#131921] py-2 active:text-white active:bg-[#FF6200] pl-2 rounded-md hover:text-[#FF6200] transition">Cart</Link>
-          <Link to="/user-login" className="block text-[#131921] py-2 active:text-white active:bg-[#FF6200] pl-2 rounded-md hover:text-[#FF6200] transition">Login</Link>
-          <Link to="/user-signin" className="block text-[#131921] hover:text-[#FF6200] py-2 active:text-white active:bg-[#FF6200] pl-2 rounded-md transition">Sign Up</Link>
+          <Link to="/cart" className="block text-[#131921] py-2 active:text-white active:bg-[#CC0000] pl-2 rounded-md hover:text-[#CC0000] transition">Cart</Link>
+          <Link to="/user-login" className="block text-[#131921] py-2 active:text-white active:bg-[#CC0000] pl-2 rounded-md hover:text-[#CC0000] transition">Login</Link>
+          <Link to="/user-signin" className="block text-[#131921] hover:text-[#CC0000] py-2 active:text-white active:CC0000] pl-2 rounded-md transition">Sign Up</Link>
         </div>
       </div>
 
@@ -192,8 +192,8 @@ const Home = () => {
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
                 className={`cursor-pointer px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${selectedCategory === cat
-                  ? 'bg-[#FF6200] text-white'
-                  : 'hover:text-[#FF6200] hover:bg-orange-50'
+                  ? 'bg-[#CC0000] text-white'
+                  : 'hover:text-[#CC0000] hover:bg-orange-50'
                   }`}
               >
                 {cat}
@@ -206,7 +206,7 @@ const Home = () => {
       <div className="max-w-7xl relative z-1 mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-[#131921]">
-            {selectedCategory === 'All' ? 'All' : selectedCategory} <span className="text-[#FF6200]">Products</span>
+            {selectedCategory === 'All' ? 'All' : selectedCategory} <span className="text-[#CC0000]">Products</span>
           </h2>
           <span className="text-sm text-gray-500">{filteredProducts.length} products</span>
         </div>
@@ -237,13 +237,13 @@ const Home = () => {
 
                     <div className='p-4'>
                       <Link to={`/product-page/${product._id}`}>
-                        <p className='text-sm font-semibold text-[#131921] hover:text-[#FF6200] transition truncate'>
+                        <p className='text-sm font-semibold text-[#131921] hover:text-[#CC0000] transition truncate'>
                           {product.productName}
                         </p>
                       </Link>
 
                       <div className="flex items-center gap-2 mt-1">
-                        <p className='font-bold text-[#FF6200] text-lg'>
+                        <p className='font-bold text-[#CC0000] text-lg'>
                           Rs. {Math.floor(discountPrice).toLocaleString()}
                         </p>
                         {product.discount > 0 && (
@@ -252,7 +252,7 @@ const Home = () => {
                           </p>
                         )}
                         {product.discount > 0 && (
-                          <span className="bg-[#FF6200] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                          <span className="bg-[##CC0000] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
                             -{product.discount.toLocaleString()}%
                           </span>
                         )}
@@ -269,7 +269,7 @@ const Home = () => {
                       <button
                         onClick={() => { cartData(product._id) }}
                         className={`font-semibold cursor-pointer w-full mt-3 py-2 rounded-lg transition-all duration-300 ${product.stock > 0
-                          ? 'bg-[#FF6200] text-white hover:bg-[#e55a00]'
+                          ? 'bg-[#CC0000] text-white hover:bg-[#e55a00]'
                           : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                           }`}
                         disabled={product.stock === 0}
