@@ -3,19 +3,6 @@ const jwt = require('jsonwebtoken')
 const uploadFile = require('../service/product.service.js')
 const createProduct = async (req, res) => {
     try {
-        const token = req.cookies.token
-        if (!token) {
-           return  res.status(409).json({
-                message: "Invalid Creadintials"
-            })
-        }
-        console.log(token)
-        const decoded = jwt.verify(token, process.env.JWT_KEY);
-        if (!decoded) {
-            return res.status(401).json({
-                message: "Invalid credintials!"
-            })
-        }
         const { productName, description, price, category, stock, brandName, size, color, discount, tax } = req.body;
         const result = await uploadFile(req.file.buffer)
         const product = await productModel.create({
