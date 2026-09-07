@@ -89,13 +89,23 @@ const getOrders = async (req, res) => {
 const getMyOrders = async (req, res) => {
     try {
         const token = req.cookies.token;
+        
+        if (!token) {
+            return res.status(200).json({
+                message: "No token provided. Please login to view your orders.",
+                order: []
+            })
+        }
+
         const decoded = jwt.verify(token, process.env.JWT_KEY);
 
         if (decoded.role === "Admin") {
-            return res.status(409).json({
-                message: "This page can only accessible only for users!"
+            return res.status(200).json({
+                message: "Admins cannot access user orders.",
+                order: []
             })
         }
+        
         const userId = decoded.id
         const order = await orderModel.find({ user: userId })
              .populate({
@@ -110,8 +120,9 @@ const getMyOrders = async (req, res) => {
                 order: order
             })
     } catch (err) {
-        return res.status(409).json({
-            message: "Something is wrong!",
+        return res.status(200).json({
+            message: "Something went wrong!",
+            order: [],
             Error: err.message
         })
     }
