@@ -99,7 +99,7 @@ const deleteProduct = async (req, res) => {
         return res.status(409).json({ message: "Product not found!" })
     }
     
-    // Yahan bug fix kiya: findByIdAndDelete direct id leta hai
+    
     await productModel.findByIdAndDelete(id)
     
     res.status(200).json({ message: "Product deleted successfully!" })

@@ -138,7 +138,6 @@ const adminLogout = async (req, res) => {
     }
 }
 
-// Fixed AdminInfo: Ab ye bina token ke bhi crash nahi karega
 const AdminInfo = async (req, res) => {
     try {
         const token = req.cookies.token;
@@ -182,7 +181,6 @@ const getStats = async (req, res) => {
         const totalOrder = await orderModel.countDocuments();
         const totalUsers = await userModel.countDocuments();
 
-        // Note: Aapke is query mein 'status' field product mein nahi hai, orders mein hai. Isliye ise theek kiya hai
         const revenue = await orderModel.aggregate([
             { $match: { status: 'delivered' } },
             { $group: { _id: null, total: { $sum: '$totalPrice' } } }
