@@ -79,12 +79,11 @@ const ProductPage = () => {
         <div className="min-h-screen bg-gray-100">
             <div className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
                 <div className="flex items-center justify-between px-4 h-16 max-w-7xl mx-auto">
-                    <a href='/'>
-                        <div className='flex items-center gap-2'>
-                            <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
-                            <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
+                    <Link to='/'>
+                        <div className='flex w-40  '>
+                            <img className=' object-contain' src={DarkEliteStore} alt="Logo" />
                         </div>
-                    </a>
+                    </Link>
                 </div>
             </div>
 

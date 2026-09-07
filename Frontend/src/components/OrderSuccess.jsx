@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import axios from 'axios'
-import EliteStoreText from '../assets/EliteStoreText.png'
 import DarkEliteStore from '../assets/EliteStore.png'
 
 const OrderSuccess = () => {
@@ -76,12 +75,11 @@ const OrderSuccess = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
-        <a href='/'>
-          <div className='flex items-center gap-2'>
-            <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
-            <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
+        <Link to='/'>
+          <div className='flex w-40  '>
+            <img className=' object-contain' src={DarkEliteStore} alt="Logo" />
           </div>
-        </a>
+          </Link>
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm p-6 mt-6">

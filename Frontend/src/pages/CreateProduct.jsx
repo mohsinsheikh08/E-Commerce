@@ -1,9 +1,9 @@
-import EliteStoreText from '../assets/EliteStoreText.png'
+
 import DarkEliteStore from '../assets/EliteStore.png'
 import Motion from '../Features/Motion'
 import { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const CreateProduct = () => {
     const navigate = useNavigate()
@@ -26,7 +26,7 @@ const CreateProduct = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('productName', productName);
-        formData.append('description', description);    
+        formData.append('description', description);
         if (productImage) {
             formData.append('mainImage', productImage)
         }
@@ -64,12 +64,11 @@ const CreateProduct = () => {
             <div className="w-full h-screen">
                 <div className='w-full h-15 flex '>
                     <div className=' w-40 ml-5 flex justify-center items-center '>
-                        <a href='/'> 
-                            <div className='flex items-center gap-2'>
-                                <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
-                                <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
+                        <Link to='/'>
+                            <div className='flex w-40  '>
+                                <img className=' object-contain' src={DarkEliteStore} alt="Logo" />
                             </div>
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className=' md:py-5 pt-10 px-5 items-center flex justify-center flex-col '>

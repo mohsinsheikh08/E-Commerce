@@ -11,7 +11,6 @@ import {
   Eye,
   LogOut,
 } from 'lucide-react'
-import EliteStoreText from '../assets/EliteStoreText.png'
 import DarkEliteStore from '../assets/EliteStore.png'
 
 const AdminDashboard = () => {
@@ -130,10 +129,9 @@ const AdminDashboard = () => {
       <div className='bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50'>
         <div className='max-w-7xl mx-auto px-4 h-16 flex justify-between items-center'>
           <Link to='/'>
-            <div className='flex items-center gap-2'>
-              <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
-              <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
-            </div>
+          <div className='flex w-40  '>
+            <img className=' object-contain' src={DarkEliteStore} alt="Logo" />
+          </div>
           </Link>
           <div className='flex items-center gap-4'>
             <span className='text-sm font-semibold text-gray-700 hidden sm:block'>Admin Panel</span>

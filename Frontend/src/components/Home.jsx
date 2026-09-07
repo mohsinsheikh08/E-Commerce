@@ -3,7 +3,6 @@ import { Search, Menu, X, ShoppingCart, Truck } from 'lucide-react'
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
-import EliteStoreText from '../assets/EliteStoreText.png'
 import { cartContext } from '../context/Context'
 
 const Home = () => {
@@ -92,11 +91,10 @@ const Home = () => {
       <div className='bg-gray-50'>
         <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
           <a href='/'>
-            <div className='flex items-center gap-2'>
-              <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
-              <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
-            </div>
-          </a>
+          <div className='flex w-40  '>
+            <img className=' object-contain' src={DarkEliteStore} alt="Logo" />
+          </div>
+        </a>
         </div>
         <div className='flex items-center justify-center h-96'>
           <div className='text-center'>
@@ -120,9 +118,8 @@ const Home = () => {
     <div className="w-full relative min-h-screen bg-gray-50">
       <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
         <a href='/'>
-          <div className='flex items-center gap-2'>
-            <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
-            <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
+          <div className='flex w-40  '>
+            <img className=' object-contain' src={DarkEliteStore} alt="Logo" />
           </div>
         </a>
 

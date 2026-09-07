@@ -70,12 +70,11 @@ const CartPage = () => {
     return (
       <div className='min-h-screen bg-gray-50'>
         <div className='w-full h-16 flex justify-between items-center px-4 bg-white shadow'>
-          <a href='/'>
-            <div className='flex items-center gap-2'>
-              <img className='w-10 h-10 object-contain' src={DarkEliteStore} alt="Logo" />
-              <img className='object-contain w-full h-6' src={EliteStoreText} alt="Name" />
-            </div>
-          </a>
+          <Link to='/'>
+          <div className='flex w-40  '>
+            <img className=' object-contain' src={DarkEliteStore} alt="Logo" />
+          </div>
+          </Link>
         </div>
         <div className='flex flex-col items-center justify-center h-96'>
           <div className='text-6xl mb-4'>🛒</div>
