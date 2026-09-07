@@ -2,12 +2,13 @@ import DarkEliteStore from '../assets/EliteStore.png'
 import { Search, Menu, X, ShoppingCart, Truck } from 'lucide-react'
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import EliteStoreText from '../assets/EliteStoreText.png'
 import { cartContext } from '../context/Context'
 
 const Home = () => {
   const { setCartInfo, cartInfo } = useContext(cartContext)
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
   const [products, setProducts] = useState([])
   const [adminInfo, setAdminInfo] = useState(null)
@@ -17,7 +18,7 @@ const Home = () => {
   const [inputVal, setInputVal] = useState('')
   const [getVal, setgetVal] = useState('')
   const categories = ['All', 'Electronics', 'Clothing', 'Books', 'Food', 'Home', 'Beauty']
-  console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -26,25 +27,28 @@ const Home = () => {
         })
         setProducts(response.data?.products)
 
-        const secResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/admin-info`, {
-          withCredentials: true
-        })
-        setAdminInfo(secResponse.data?.admin)
+        try {
+          const secResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/admin-info`, {
+            withCredentials: true
+          })
+          setAdminInfo(secResponse.data?.admin)
+        } catch (adminErr) {
+          console.log(adminErr)
+          setAdminInfo(null)
+        }
 
         try {
           const cartResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/cart/cart`, {
             withCredentials: true
           })
           setCartInfo(cartResponse.data?.cart || null)
-          console.log('Cart fetched:', cartResponse.data?.cart)
         } catch (cartErr) {
-          console.log('Cart not available:', cartErr.message)
+           console.log(cartErr)
           setCartInfo(null)
         }
 
       } catch (err) {
-        console.log(err)
-        console.log(err.response?.data)
+         console.log(err)
         setError('Failed to load products!')
       } finally {
         setLoading(false)
@@ -61,10 +65,15 @@ const Home = () => {
         withCredentials: true
       })
       setCartInfo(thirdResponse.data.cart)
-      console.log(thirdResponse.data.cart)
     } catch (err) {
-      console.log('❌ Error:', err);
-      console.log('❌ Error Response:', err.response?.data);
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        const userConfirmed = window.confirm("You must login or register to add items to your cart. Do you want to go to the registration page?");
+        if (userConfirmed) {
+          navigate('/user-signin');
+        }
+      } else {
+        alert('Failed to add to cart. Please try again.');
+      }
     }
   }
 
@@ -129,7 +138,7 @@ const Home = () => {
             type="text"
             placeholder='Search EliteStore'
           />
-          <button onClick={() => { setgetVal(inputVal) }} className='bg-[#CC0000] px-4 rounded-r-lg  hover:bg-[#E60000] transition text-white'>
+          <button onClick={() => { setgetVal(inputVal) }} className='bg-[#CC0000] px-4 rounded-r-lg hover:bg-[#E60000] transition text-white'>
             <Search size={20} />
           </button>
         </div>
@@ -180,7 +189,7 @@ const Home = () => {
           </div>
           <Link to="/cart" className="block text-[#131921] py-2 active:text-white active:bg-[#CC0000] pl-2 rounded-md hover:text-[#CC0000] transition">Cart</Link>
           <Link to="/user-login" className="block text-[#131921] py-2 active:text-white active:bg-[#CC0000] pl-2 rounded-md hover:text-[#CC0000] transition">Login</Link>
-          <Link to="/user-signin" className="block text-[#131921] hover:text-[#CC0000] py-2 active:text-white active:CC0000] pl-2 rounded-md transition">Sign Up</Link>
+          <Link to="/user-signin" className="block text-[#131921] hover:text-[#CC0000] py-2 active:text-white active:bg-[#CC0000] pl-2 rounded-md transition">Sign Up</Link>
         </div>
       </div>
 
@@ -252,7 +261,7 @@ const Home = () => {
                           </p>
                         )}
                         {product.discount > 0 && (
-                          <span className="bg-[##CC0000] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                          <span className="bg-[#CC0000] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
                             -{product.discount.toLocaleString()}%
                           </span>
                         )}
@@ -267,7 +276,7 @@ const Home = () => {
                       </div>
 
                       <button
-                        onClick={() => { cartData(product._id) }}
+                        onClick={() => cartData(product._id)}
                         className={`font-semibold cursor-pointer w-full mt-3 py-2 rounded-lg transition-all duration-300 ${product.stock > 0
                           ? 'bg-[#CC0000] text-white hover:bg-[#E60000]'
                           : 'bg-gray-200 text-gray-400 cursor-not-allowed'

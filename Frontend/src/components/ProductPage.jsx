@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Star, Minus, Plus, Truck, Shield, RotateCcw, MoveLeft } from 'lucide-react'
 import DarkEliteStore from '../assets/EliteStore.png'
@@ -9,6 +9,7 @@ import { cartContext } from '../context/Context'
 const ProductPage = () => {
     const { id } = useParams();
     const { setCartInfo } = useContext(cartContext)
+    const navigate = useNavigate()
     const [product, setproduct] = useState({})
     const [stockNum, setstockNum] = useState(1)
     const [loading, setLoading] = useState(false)
@@ -21,10 +22,6 @@ const ProductPage = () => {
                 setproduct(response.data.product)
             } catch (err) {
                 console.log(err)
-                console.log("Full Error:", err)
-                console.log("Error Response:", err.response)
-                console.log("Status Code:", err.response?.status)
-                console.log("Error Message:", err.response?.data?.message)
             } finally {
                 setLoading(false)
             }
@@ -46,8 +43,14 @@ const ProductPage = () => {
             })
             setCartInfo(thirdResponse.data.cart)
         } catch (err) {
-            console.log('❌ Error:', err);
-            console.log('❌ Error Response:', err.response?.data);
+            if (err.response?.status === 401 || err.response?.status === 403) {
+                const userConfirmed = window.confirm("You must login or register to add items to your cart. Do you want to go to the registration page?");
+                if (userConfirmed) {
+                    navigate('/user-signin');
+                }
+            } else {
+                alert('Failed to add to cart. Please try again.');
+            }
         }
     }
 
@@ -196,7 +199,7 @@ const ProductPage = () => {
                         <button
                             onClick={() => { cartData(product._id) }}
                             disabled={product.stock === 0} className={`
-                            ${product.stock === 0 ? "w-full bg-[#CC0000] cursor-not-allowed text-white font-bold py-3 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]" : "w-full bg-[#CC0000] hover:bg-[#e05500] text-white font-bold py-3 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"}
+                            ${product.stock === 0 ? "w-full bg-[#CC0000] cursor-not-allowed text-white font-bold py-3 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]" : "w-full bg-[#CC0000] hover:bg-[#E60000] text-white font-bold py-3 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"}
                         `}>
                             {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
                         </button>
@@ -267,7 +270,7 @@ const ProductPage = () => {
                         <button
                             onClick={() => { cartData(product._id) }}
                             disabled={product.stock === 0} className={`
-                            ${product.stock === 0 ? "w-full bg-[#CC0000] hover:bg-[#E60000] cursor-not-allowed text-white font-bold py-2 mt-2 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]" : "w-full bg-[#CC0000] hover:bg-[#CC0000] text-white font-bold mt-3 py-1.5 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"}
+                            ${product.stock === 0 ? "w-full bg-[#CC0000] cursor-not-allowed text-white font-bold py-2 mt-2 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]" : "w-full bg-[#CC0000] hover:bg-[#E60000] text-white font-bold mt-3 py-1.5 rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"}
                         `}>
                             {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
                         </button>
